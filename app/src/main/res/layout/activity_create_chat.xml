@@ -31,10 +31,18 @@
         android:textSize="35sp" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:text="Pick"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/buttonDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pick"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 

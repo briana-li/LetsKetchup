@@ -16,7 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CreateChat"></activity>
+        <activity android:name=".CreateChat" />
+        <activity android:name=".FriendSelectChat"></activity>
     </application>
 
 </manifest>
