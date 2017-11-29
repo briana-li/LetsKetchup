@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "796433944145",
+    "firebase_url": "https://lets-ketchup.firebaseio.com",
+    "project_id": "lets-ketchup",
+    "storage_bucket": "lets-ketchup.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:796433944145:android:c5be8a4328a07710",
+        "android_client_info": {
+          "package_name": "edu.brandeis.cs.brianali.letsketchuptest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "796433944145-638akbhfm03f26k00143getqmrlurj5u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvZTm9osLV9ev3hu8ayoIvcpC4-6vlAAE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
