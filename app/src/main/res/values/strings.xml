@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">LetsKetchupTest</string>
+    <string name="date_title">Select the meetup date</string>
+    <string name="time_title">Select the meetup time</string>
 </resources>
