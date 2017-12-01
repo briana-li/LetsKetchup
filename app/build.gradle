@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.1"
+    compileSdkVersion 24
+    buildToolsVersion '25.0.0'
     defaultConfig {
         applicationId "edu.brandeis.cs.brianali.letsketchuptest"
-        minSdkVersion 23
-        targetSdkVersion 26
+        minSdkVersion 21
+        targetSdkVersion 24
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -17,6 +17,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    packagingOptions {
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE-FIREBASE.txt'
+        exclude 'META-INF/NOTICE'
+    }
 }
 
 dependencies {
@@ -24,20 +29,28 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:26.+'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.android.support:appcompat-v7:24.2.1'
+    compile 'com.android.support:design:24.2.1'
     testCompile 'junit:junit:4.12'
 
     //Jackson Databind
     compile 'com.fasterxml.jackson.core:jackson-databind:2.7.2'
 
     //Glide transform
-    compile 'jp.wasabeef:glide-transformations:3.0.1'
+    compile 'jp.wasabeef:glide-transformations:2.0.1'
 
-    compile 'com.google.firebase:firebase-core:11.6.2'
-    compile 'com.google.firebase:firebase-database:11.6.2'
-    compile 'com.google.firebase:firebase-storage:11.6.2'
-    compile 'com.google.firebase:firebase-messaging:11.6.2'
+    // Firebase
+    compile 'com.google.firebase:firebase-database:9.6.0'
+    compile 'com.google.firebase:firebase-auth:9.6.0'
+    compile 'com.google.firebase:firebase-storage:9.6.0'
+    compile 'com.google.firebase:firebase-messaging:9.6.0'
+    compile 'com.google.firebase:firebase-config:9.6.0'
+
+    // FirebaseUI
+    compile 'com.firebaseui:firebase-ui:0.6.0'
+    //compile 'com.firebaseui:firebase-ui-auth:3.1.0'
+    compile 'com.google.android.gms:play-services-appindexing:9.6.0'
 
 }
+
 apply plugin: 'com.google.gms.google-services'

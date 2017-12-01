@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">LetsKetchupTest</string>
-    <string name="date_title">Select the meetup date</string>
-    <string name="time_title">Select the meetup time</string>
+    <string name="app_name">FirebaseMessengerApp</string>
+    <string name="action_settings">Settings</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="friends_list">Friends</string>
+    <string name="find_friends">Find Friends</string>
 </resources>
