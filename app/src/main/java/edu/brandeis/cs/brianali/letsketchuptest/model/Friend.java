@@ -26,7 +26,6 @@ public class Friend {
         return this.email == friend.email;
     }
 
-    //TODO: Override hashcode object
     public int hashCode(){
         return email.hashCode();
     }

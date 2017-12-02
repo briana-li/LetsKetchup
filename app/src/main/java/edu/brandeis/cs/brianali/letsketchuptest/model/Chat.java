@@ -37,9 +37,9 @@ public class Chat {
         return chatName;
     }
 
-    public List<Message> getMessages() {
+   /* public List<Message> getMessages() {
         return messages;
-    }
+    }*/
 
     public List<Friend> getFriends() {
         return friends;

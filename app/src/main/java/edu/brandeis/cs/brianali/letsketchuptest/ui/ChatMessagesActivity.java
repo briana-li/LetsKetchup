@@ -144,8 +144,8 @@ public class ChatMessagesActivity extends AppCompatActivity {
         mToolBar.setTitle(chatName);
         showMessages();
         addListeners();
-        openImageSelector();
-        openVoiceRecorder();
+        //openImageSelector();
+        //openVoiceRecorder();
 
     }
 
@@ -186,7 +186,7 @@ public class ChatMessagesActivity extends AppCompatActivity {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     //create a new message containing this image
-                    addImageToMessages(downloadURl);
+                   // addImageToMessages(downloadURl);
                     mProgress.dismiss();
                 }
             });
@@ -194,87 +194,6 @@ public class ChatMessagesActivity extends AppCompatActivity {
 
     }
 
-    public void openVoiceRecorder(){
-        //Implement voice selection
-        mrecordVoiceButton =(ImageButton) findViewById(R.id.recordVoiceButton);
-        mRecordLable = (TextView) findViewById(R.id.recordLable);
-
-        mFileName = Environment.getExternalStorageDirectory().getAbsolutePath();
-        mFileName += "/recorded_audio.3gp";
-
-        mrecordVoiceButton.setOnTouchListener(new View.OnTouchListener(){
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent){
-
-                if(motionEvent.getAction() == MotionEvent.ACTION_DOWN){
-
-                    startRecording();
-
-                    mRecordLable.setText("Recording started...");
-                }
-                else if (motionEvent.getAction() == MotionEvent.ACTION_UP){
-
-                    stopRecording();
-
-                    mRecordLable.setText("Recording stopped...");
-
-                }
-                return false;
-            }
-        });
-
-        //on complete: sendVoice()
-    }
-
-    private void startRecording() {
-
-        mRecorder = new MediaRecorder();
-        mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-        mRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
-
-        mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
-        mRecorder.setOutputFile(mFileName);
-        try {
-            mRecorder.prepare();
-        } catch (IOException e) {
-            Log.e(LOG_TAG, "prepare() failed");
-        }
-
-        mRecorder.start();
-    }
-
-    private void stopRecording() {
-        mRecorder.stop();
-        mRecorder.release();
-        mRecorder = null;
-        uploadAudio();
-    }
-
-    private void uploadAudio() {
-
-        mStorage = FirebaseStorage.getInstance().getReference();
-
-        mProgress.setMessage("Sending the Audio...");
-        mProgress.show();
-
-        Uri uri = Uri.fromFile(new File(mFileName));
-        //Keep all voice for a specific chat grouped together
-        final String voiceLocation = "Voice" + "/" + messageId;
-        final String voiceLocationId = voiceLocation + "/" + uri.getLastPathSegment();
-        final String uniqueId = UUID.randomUUID().toString();
-        final StorageReference filepath = mStorage.child(voiceLocation).child(uniqueId + "/audio_message.3gp");
-        final String downloadURl = filepath.getPath();
-
-        filepath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                addVoiceToMessages(downloadURl);
-                mProgress.dismiss();
-                mRecordLable.setText("Tap and Hold the Phone Button to Record");
-
-            }
-        });
-    }
 
     public void addListeners(){
         mMessageField.addTextChangedListener(new TextWatcher() {
@@ -296,59 +215,6 @@ public class ChatMessagesActivity extends AppCompatActivity {
             }
         });
     }
-
-    //If voice message add them to Firebase.Storage
-    public void addVoiceToMessages(String voiceLocation){
-        final DatabaseReference pushRef = mMessageDatabaseReference.push();
-        final String pushKey = pushRef.getKey();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
-        Date date = new Date();
-        String timestamp = dateFormat.format(date);
-        //Create message object with text/voice etc
-        Message message =
-                new Message(EmailEncoding.commaEncodePeriod(mFirebaseAuth.getCurrentUser().getEmail()),
-                        "Message: Voice Sent", "VOICE", voiceLocation, timestamp);
-        //Create HashMap for Pushing
-        HashMap<String, Object> messageItemMap = new HashMap<String, Object>();
-        HashMap<String,Object> messageObj = (HashMap<String, Object>) new ObjectMapper()
-                .convertValue(message, Map.class);
-        messageItemMap.put("/" + pushKey, messageObj);
-        mMessageDatabaseReference.updateChildren(messageItemMap)
-                .addOnCompleteListener(this, new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        mMessageField.setText("");
-                    }
-                });
-    }
-
-
-    //Send image messages from here
-    public void addImageToMessages(String imageLocation){
-        final DatabaseReference pushRef = mMessageDatabaseReference.push();
-        final String pushKey = pushRef.getKey();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
-        Date date = new Date();
-        String timestamp = dateFormat.format(date);
-        //Create message object with text/voice etc
-        Message message =
-                new Message(EmailEncoding.commaEncodePeriod(mFirebaseAuth.getCurrentUser().getEmail()),
-                        "Message: Image Sent", "IMAGE", imageLocation, timestamp);
-        //Create HashMap for Pushing
-        HashMap<String, Object> messageItemMap = new HashMap<String, Object>();
-        HashMap<String,Object> messageObj = (HashMap<String, Object>) new ObjectMapper()
-                .convertValue(message, Map.class);
-        messageItemMap.put("/" + pushKey, messageObj);
-        mMessageDatabaseReference.updateChildren(messageItemMap)
-                .addOnCompleteListener(this, new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        mMessageField.setText("");
-                    }
-                });
-    }
-
-
 
     public void sendMessage(View view){
         //final DatabaseReference messageRef = mFirebaseDatabase.getReference(Constants.MESSAGE_LOCATION);
@@ -387,28 +253,6 @@ public class ChatMessagesActivity extends AppCompatActivity {
                 final ImageView leftImage = (ImageView) view.findViewById(R.id.leftMessagePic);
                 final ImageView rightImage = (ImageView) view.findViewById(R.id.rightMessagePic);
                 LinearLayout individMessageLayout = (LinearLayout)view.findViewById(R.id.individMessageLayout);
-
-                //display timestamp correclty
-//                String time = message.getTimestamp();
-//                if(time != null && time != "" ) {
-//                    String ampm = "A.M.";
-//                    String hours = time.substring(0, 2);
-//                    String minutes = time.substring(3, 5);
-//                    int numHours = Integer.parseInt(hours);
-//                    if(numHours == 12){ //if numhours is 12 then its pm
-//                        ampm = "P.M.";
-//                    }
-//                    if (numHours > 12) {
-//                        numHours -= 12;
-//                        ampm = "P.M.";
-//                    }
-//                    if(numHours == 0){
-//                        numHours = 12;
-//                    }
-//                    hours = Integer.toString(numHours);
-//                    time = hours + ":" + minutes + " " + ampm;
-//                }
-//                timeTextView.setText(time);
 
                 //set message and sender text
                 messgaeText.setText(message.getMessage());
@@ -495,56 +339,6 @@ public class ChatMessagesActivity extends AppCompatActivity {
                     });
                 }
 
-                //If this is multimedia display it
-                final ImageView imageView = (ImageView) view.findViewById(R.id.imageMessage);
-                final ImageButton activateVoiceMsg = (ImageButton) view.findViewById(R.id.voiceMessageButton);
-                if(message.getMultimedia()){
-                    if(message.getContentType().equals("IMAGE")) {
-                        StorageReference storageRef = FirebaseStorage.getInstance()
-                                .getReference().child(message.getContentLocation());
-                        imageView.setVisibility(View.VISIBLE);
-                        activateVoiceMsg.setVisibility(View.GONE);
-                        activateVoiceMsg.setImageDrawable(null);
-                        //storageRef.getDownloadUrl().addOnCompleteListener(new O)
-//                        Glide.with(view.getContext())
-//                                .using(new FirebaseImageLoader())
-//                                .load(storageRef)
-//                                .into(imageView);
-                    }
-                    if(message.getContentType().equals("VOICE")) {
-                        //show play button
-                        activateVoiceMsg.setVisibility(View.VISIBLE);
-                        //hide imageview
-                        imageView.setVisibility(View.GONE);
-                        imageView.setImageDrawable(null);
-                        //line below will reduce padding further on play audio image if necessary
-                        //individMessageLayout.setPadding(10,0,0,10);
-                        activateVoiceMsg.setOnClickListener(new View.OnClickListener() {
-
-                            @Override
-                            public void onClick(View v) {
-                                StorageReference storageRef = FirebaseStorage.getInstance().getReference().child(message.getContentLocation());
-                                storageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                    @Override
-                                    public void onSuccess(Uri uri) {
-                                        playSound(uri);
-                                    }
-                                }).addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception exception) {
-                                        // Handle any errors
-                                    }
-                                });
-
-                            }
-                        });
-                    }
-                }else{
-                    activateVoiceMsg.setVisibility(View.GONE);
-                    activateVoiceMsg.setImageDrawable(null);
-                    imageView.setVisibility(View.GONE);
-                    imageView.setImageDrawable(null);
-                }
             }
         };
         mMessageList.setAdapter(mMessageListAdapter);
