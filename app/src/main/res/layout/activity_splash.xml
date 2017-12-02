@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context="edu.brandeis.cs.brianali.letsketchuptest.ui.SplashActivity">
+
+    <TextView
+        android:id="@+id/GroupName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="by FoodGroup"
+        tools:layout_editor_absoluteX="163dp"
+        tools:layout_editor_absoluteY="247dp"
+        android:textSize="20sp"
+        android:layout_below="@+id/AppName"
+        android:layout_alignEnd="@+id/AppName"
+        android:layout_marginEnd="16dp" />
+
+    <TextView
+        android:id="@+id/AppName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LetsKetchup!"
+        android:textColor="#ffff"
+        android:textSize="45sp"
+        android:layout_marginTop="131dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:id="@+id/image_view"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginTop="18dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        android:src="@mipmap/ic_launcher"
+        android:layout_below="@+id/GroupName"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

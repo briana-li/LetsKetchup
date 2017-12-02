@@ -298,6 +298,18 @@ public class ChatListActivity extends AppCompatActivity {
             startActivity(intent);
         }
 
+        if (id == R.id.settings) {
+            //open settings
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
+        }
+
+        if (id == R.id.about) {
+            //open about
+            Intent intent = new Intent(this, AboutActivity.class);
+            startActivity(intent);
+        }
+
         return true;
     }
 
