@@ -154,7 +154,7 @@ public class ChatListActivity extends AppCompatActivity {
                                 + "/" + chat.getUid());
 
                 final TextView dateInfo = (TextView)view.findViewById(R.id.nameTextView);
-                final String subTitle = chat.getChatName();
+                final String subTitle = chat.getChatDate();
 
                 messageRef.addChildEventListener(new ChildEventListener() {
                     @Override
