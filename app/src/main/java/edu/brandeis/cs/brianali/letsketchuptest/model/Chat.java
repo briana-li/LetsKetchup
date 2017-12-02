@@ -9,6 +9,7 @@ public class Chat {
     private String chatName;
     private List<Message> messages;
     private List<Friend> friends;
+    private String chatDate;
 
     public Chat(){
 
@@ -36,6 +37,15 @@ public class Chat {
     public String getChatName() {
         return chatName;
     }
+
+    public void setChatDate(String chatDate){
+        this.chatDate = chatDate;
+    }
+
+    public String getChatDate(){
+        return chatDate;
+    }
+
 
    /* public List<Message> getMessages() {
         return messages;
