@@ -215,7 +215,11 @@ public class ChatActivity extends AppCompatActivity {
         final DatabaseReference pushRef = chatRef.push();
         final String pushKey = pushRef.getKey();
         mChat.setUid(pushKey);
-        mChat.setChatName(mChatName.getText().toString());
+        //Here is the chat naming code using intent
+        Intent naming = getIntent();
+        String date = naming.getStringExtra("date");
+        String time = naming.getStringExtra("time");
+        mChat.setChatName("Event on " + date + " at " + time);
         Log.e(TAG, "Push key is: " + pushKey);
 
         //Create HashMap for Pushing Conv

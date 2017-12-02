@@ -37,6 +37,11 @@
                 android:theme="@style/AppTheme.NoActionBar">
             </activity>
             <activity
+                android:name=".ui.CreateChat"
+                android:label="Make Chat Name"
+                android:theme="@style/AppTheme.NoActionBar">
+            </activity>
+            <activity
                 android:name=".ui.ChatMessagesActivity"
                 android:label="(Name of Chat)"
                 android:theme="@style/AppTheme.NoActionBar">

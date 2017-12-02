@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="edu.brandeis.cs.brianali.letsketchuptest.CreateChat">
+    tools:context="edu.brandeis.cs.brianali.letsketchuptest.ui.CreateChat">
 
     <TimePicker
         android:id="@+id/timePicker"

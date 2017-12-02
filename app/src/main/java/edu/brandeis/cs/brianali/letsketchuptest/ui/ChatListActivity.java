@@ -97,7 +97,7 @@ public class ChatListActivity extends AppCompatActivity {
     }
 
     public void createNewChat(View view){
-        Intent intent = new Intent(this, ChatActivity.class);
+        Intent intent = new Intent(this, CreateChat.class);
         startActivity(intent);
     }
 

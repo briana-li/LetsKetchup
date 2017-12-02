@@ -1,6 +1,5 @@
-package edu.brandeis.cs.brianali.letsketchuptest;
+package edu.brandeis.cs.brianali.letsketchuptest.ui;
 
-import android.content.ContentValues;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,8 +8,10 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import java.util.Calendar;
+import java.util.Date;
 
-import static android.R.attr.button;
+import edu.brandeis.cs.brianali.letsketchuptest.R;
 
 public class CreateChat extends AppCompatActivity {
     private DatePicker date;
@@ -20,7 +21,7 @@ public class CreateChat extends AppCompatActivity {
     private Button buttonDate;
     private String finalDate;
     private String finalTime;
-    private String[] friends;
+
 
 
     @Override
@@ -35,7 +36,7 @@ public class CreateChat extends AppCompatActivity {
         buttonDate.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                finalDate = date.toString();
+                finalDate = getDateFromDatePicker(date);
                 timeLayout();
 
             }
@@ -44,14 +45,46 @@ public class CreateChat extends AppCompatActivity {
         buttonTime.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                finalTime = time.toString();
-                startActivityForResult(new Intent(CreateChat.this,FriendSelectChat.class),1);
+                finalTime = (getTimeFromTimePicker(time));
+                Intent naming = new Intent(CreateChat.this,ChatActivity.class);
+                naming.putExtra("time",finalTime);
+                naming.putExtra("date",finalDate);
+                startActivity(naming);
             }
         });
 
 
 
         dateLayout();
+    }
+
+    public static String getDateFromDatePicker(DatePicker datePicker){
+        int day = datePicker.getDayOfMonth();
+        int month = datePicker.getMonth();
+        int year =  datePicker.getYear();
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(year, month, day);
+
+        String fullDate =  calendar.getTime().toString();
+        String[] words = fullDate.split(" ");
+        return words[0] + ", " + words[1] + " " + words[2];
+    }
+
+    public static String getTimeFromTimePicker(TimePicker timePicker){
+        int hour = timePicker.getHour();
+        int minute = timePicker.getMinute();
+        String ampm = " AM";
+        if(hour > 12){
+            hour -= 12;
+            ampm = " PM";
+        }
+        String min = String.valueOf(minute);
+        if(minute<10){
+            min = "0"  +minute;
+        }
+
+        return hour + ":" + minute + ampm;
     }
 
     public void timeLayout(){
@@ -72,23 +105,4 @@ public class CreateChat extends AppCompatActivity {
         date.setVisibility(View.VISIBLE);
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 1) {
-            // Make sure the request was successful
-            if (resultCode == RESULT_OK) {
-                friends = data.getStringArrayExtra("friends");
-                String notes = data.getStringExtra("notes");
-
-
-                Intent values = new Intent();
-                values.putExtra("date",finalDate);
-                values.putExtra("time",finalTime);
-                values.putExtra("friends",friends);
-
-                setResult(RESULT_OK,values);
-                finish();
-            }
-        }
-    }
 }
