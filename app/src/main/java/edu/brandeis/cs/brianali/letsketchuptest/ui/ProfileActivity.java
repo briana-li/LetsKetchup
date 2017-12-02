@@ -108,11 +108,11 @@ public class ProfileActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Void> task) {
                         StorageReference storageRef = FirebaseStorage.getInstance()
                                 .getReference().child(imageLocation);
-//                        Glide.with(mView)
-//                                .using(new FirebaseImageLoader())
-//                                .load(storageRef)
-//                                .bitmapTransform(new CropCircleTransformation(mView))
-//                                .into(imageView);
+                        Glide.with(mView)
+                                .using(new FirebaseImageLoader())
+                                .load(storageRef)
+                                .bitmapTransform(new CropCircleTransformation(mView))
+                                .into(imageView);
                     }
                 }
         );
@@ -146,11 +146,11 @@ public class ProfileActivity extends AppCompatActivity {
                                 StorageReference storageRef = FirebaseStorage.getInstance()
                                         .getReference().child(user.getProfilePicLocation());
 
-//                                Glide.with(mView)
-//                                        .using(new FirebaseImageLoader())
-//                                        .load(storageRef)
-//                                        .bitmapTransform(new CropCircleTransformation(mView))
-//                                        .into(imageView);
+                                Glide.with(mView)
+                                        .using(new FirebaseImageLoader())
+                                        .load(storageRef)
+                                        .bitmapTransform(new CropCircleTransformation(mView))
+                                        .into(imageView);
                             }
                         }catch (Exception e){
                             Log.e("Err", "glide");

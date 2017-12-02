@@ -97,10 +97,11 @@ public class ChatListActivity extends AppCompatActivity {
     }
 
     public void createNewChat(View view){
-        Intent intent = new Intent(this, ChatActivity.class);
+        Intent intent = new Intent(this, CreateChat.class);
         startActivity(intent);
     }
 
+    //You cant have a chat if you have no friends
     private void hideShowAddChatButton(FirebaseUser user) {
         addConversationButton = (ImageView) findViewById(R.id.add_conversation);
         final String userLoggedIn = user.getEmail();
@@ -125,6 +126,7 @@ public class ChatListActivity extends AppCompatActivity {
         });
     }
 
+    //Make initial main screen
     private void onSignedInInitialize(FirebaseUser user) {
         mUsername = user.getDisplayName();
         mChatDatabaseReference = mFirebaseDatabase.getReference()
@@ -151,14 +153,15 @@ public class ChatListActivity extends AppCompatActivity {
                         mFirebaseDatabase.getReference(Constants.MESSAGE_LOCATION
                                 + "/" + chat.getUid());
 
-                final TextView latestMessage = (TextView)view.findViewById(R.id.nameTextView);
-                final ImageView senderPic = (ImageView)view.findViewById(R.id.photoImageView);
+                final TextView dateInfo = (TextView)view.findViewById(R.id.nameTextView);
+                final String subTitle = chat.getChatDate();
 
                 messageRef.addChildEventListener(new ChildEventListener() {
                     @Override
                     public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
                         Message newMsg = dataSnapshot.getValue(Message.class);
-                        latestMessage.setText(EmailEncoding.commaDecodePeriod(newMsg.getSender()) + ": " + newMsg.getMessage());
+                        //Make subtext in chat here
+                        dateInfo.setText(subTitle);
 
                         mUserDatabaseReference.child(newMsg.getSender())
                                 .addValueEventListener(new ValueEventListener() {
@@ -309,7 +312,7 @@ public class ChatListActivity extends AppCompatActivity {
             Intent intent = new Intent(this, AboutActivity.class);
             startActivity(intent);
         }
-
+        
         return true;
     }
 
@@ -333,8 +336,6 @@ public class ChatListActivity extends AppCompatActivity {
 
             }
         });
-
-
     }
 
 }

@@ -149,7 +149,7 @@ public class ChatMessagesActivity extends AppCompatActivity {
 
     }
 
-    //Add listener for on completion of image selection
+   /* //Add listener for on completion of image selection
     public void openImageSelector(){
         mphotoPickerButton = (ImageButton) findViewById(R.id.photoPickerButton);
         mProgress = new ProgressDialog(this);
@@ -157,11 +157,11 @@ public class ChatMessagesActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 Intent intent = new Intent(Intent.ACTION_PICK);
-                intent.setType("image/*");
+                intent.setType("image*//*");
                 startActivityForResult(intent, GALLERY_INTENT);
             }
         });
-    }
+    }*/
 
 
     @Override
