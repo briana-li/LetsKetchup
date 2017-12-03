@@ -28,6 +28,11 @@
         android:title="Venmo"
         app:showAsAction="never" />
     <item
+        android:id="@+id/credits"
+        android:orderInCategory="100"
+        android:title="Credits"
+        app:showAsAction="never" />
+    <item
         android:id="@+id/sign_out"
         android:orderInCategory="100"
         android:title="@string/sign_out"

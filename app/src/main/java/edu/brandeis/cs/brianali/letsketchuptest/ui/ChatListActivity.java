@@ -320,6 +320,13 @@ public class ChatListActivity extends AppCompatActivity {
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             startActivity(intent);
         }
+
+        if (id == R.id.credits){
+            //open credits
+            Intent intent = new Intent(this, Credits.class);
+            startActivity(intent);
+        }
+
         return true;
     }
 

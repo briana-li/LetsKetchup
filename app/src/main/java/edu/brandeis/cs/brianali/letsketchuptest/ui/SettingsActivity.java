@@ -41,10 +41,12 @@ public class SettingsActivity extends AppCompatActivity {
             volumeSeekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                 @Override
                 public void onStopTrackingTouch(SeekBar arg0) {
+
                 }
 
                 @Override
                 public void onStartTrackingTouch(SeekBar arg0) {
+
                 }
 
                 @Override
