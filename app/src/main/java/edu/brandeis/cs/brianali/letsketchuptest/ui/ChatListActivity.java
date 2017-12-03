@@ -1,6 +1,7 @@
 package edu.brandeis.cs.brianali.letsketchuptest.ui;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.app.DialogFragment;
@@ -312,7 +313,13 @@ public class ChatListActivity extends AppCompatActivity {
             Intent intent = new Intent(this, AboutActivity.class);
             startActivity(intent);
         }
-        
+
+        if (id == R.id.venmo) {
+            //open venmo
+            Uri uri = Uri.parse("https://venmo.com/");
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            startActivity(intent);
+        }
         return true;
     }
 

@@ -2,6 +2,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
+    android:layout_width="match_parent"
 
     <Switch
         android:id="@+id/not_switch"
@@ -53,4 +54,64 @@
         android:textColor="@color/colorPrimary"
         android:text="Volume: " />
 
+    <TextView
+        android:id="@+id/tvSelectTheme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/settings_text_select_theme"
+        android:textSize="20sp"
+        android:textColor="@color/colorPrimary"
+        android:layout_marginTop="23dp"
+        android:layout_below="@+id/seekBar1"
+        android:layout_alignEnd="@+id/textView10" />
+
+    <Spinner
+        android:id="@+id/spThemes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:entries="@array/theme_array"
+        android:spinnerMode="dropdown"
+        android:layout_alignBaseline="@+id/tvSelectTheme"
+        android:layout_alignBottom="@+id/tvSelectTheme"
+        android:layout_toEndOf="@+id/tvSelectTheme" />
+
+        <TextView
+            android:id="@+id/tvSync"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_text_sync_automatically"
+            android:textSize="20sp"
+            android:textColor="@color/colorPrimary"
+            android:layout_above="@+id/toggle_google"
+            android:layout_alignStart="@+id/button2"
+            android:layout_marginBottom="11dp" />
+
+        <CheckBox
+            android:id="@+id/checkbox_sync_automatically"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:layout_alignTop="@+id/tvSync"
+            android:layout_alignEnd="@+id/button3"
+            android:layout_marginEnd="15dp" />
+
+        <TextView
+            android:id="@+id/tvLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_text_location"
+            android:textSize="20sp"
+            android:textColor="@color/colorPrimary"
+            android:layout_alignTop="@+id/toggle_google"
+            android:layout_alignEnd="@+id/textView10" />
+
+        <Switch
+            android:id="@+id/toggle_google"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textOff="@string/settings_text_state_off"
+            android:textOn="@string/settings_text_state_on"
+            android:layout_marginBottom="12dp"
+            android:layout_above="@+id/button3"
+            android:layout_alignEnd="@+id/checkbox_sync_automatically" />
 </RelativeLayout>
