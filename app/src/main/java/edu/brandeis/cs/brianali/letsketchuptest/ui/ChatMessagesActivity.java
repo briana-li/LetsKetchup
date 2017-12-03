@@ -97,25 +97,6 @@ public class ChatMessagesActivity extends AppCompatActivity {
     private static final String LOG_TAG = "Record_log";
     private ValueEventListener mValueEventListener;
 
-    //Audio Runtime Permissions
-    private boolean permissionToRecordAccepted = false;
-    private boolean permissionToWriteAccepted = false;
-    private String [] permissions = {"android.permission.RECORD_AUDIO", "android.permission.WRITE_EXTERNAL_STORAGE"};
-
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (requestCode){
-            case 200:
-                permissionToRecordAccepted  = grantResults[0] == PackageManager.PERMISSION_GRANTED;
-                permissionToWriteAccepted  = grantResults[1] == PackageManager.PERMISSION_GRANTED;
-                break;
-        }
-        if (!permissionToRecordAccepted ) ChatMessagesActivity.super.finish();
-        if (!permissionToWriteAccepted ) ChatMessagesActivity.super.finish();
-
-    }
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -131,12 +112,8 @@ public class ChatMessagesActivity extends AppCompatActivity {
         if(messageId == null){
             finish(); // replace this.. nav user back to home
             return;
-        }
+        }else if(messageId.equals("\"If you would like to leave this chat, please select the \\\"leave\\\" option\"")){
 
-        //Check Permissions at runtime
-        int requestCode = 200;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            requestPermissions(permissions, requestCode);
         }
 
 
@@ -148,20 +125,6 @@ public class ChatMessagesActivity extends AppCompatActivity {
         //openVoiceRecorder();
 
     }
-
-   /* //Add listener for on completion of image selection
-    public void openImageSelector(){
-        mphotoPickerButton = (ImageButton) findViewById(R.id.photoPickerButton);
-        mProgress = new ProgressDialog(this);
-        mphotoPickerButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                Intent intent = new Intent(Intent.ACTION_PICK);
-                intent.setType("image*//*");
-                startActivityForResult(intent, GALLERY_INTENT);
-            }
-        });
-    }*/
 
 
     @Override
@@ -302,14 +265,10 @@ public class ChatMessagesActivity extends AppCompatActivity {
                     leftImage.setVisibility(View.GONE);
                     rightImage.setVisibility(View.GONE);
                 }else{
-                    //messgaeText.setGravity(Gravity.LEFT);
-                    //senderText.setGravity(Gravity.LEFT);
                     messageLine.setGravity(Gravity.LEFT);
                     leftImage.setVisibility(View.VISIBLE);
                     rightImage.setVisibility(View.GONE);
                     individMessageLayout.setBackgroundResource(R.drawable.roundedmessages);
-                    //messgaeText.setBackgroundColor(ResourcesCompat.getColor(getResources(),
-                    //       R.color.colorPrimary, null));
 
 
                     //profile image back to here
