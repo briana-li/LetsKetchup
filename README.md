@@ -31,7 +31,9 @@ especially since that can get really disorganized with groups of people. Registe
 * Logging in with Brandeis
 * Multiple chats
 * Database access from Firebase
-
+* Themes (mostly implemented, but nine-patch themes are locked by copyright / license. As a result, we've set up a template in settings, but things can't actually be accessed. This is for the future when we actually have access and money to get license rights.
+* Venmo: go to the URL since not everyone has Venmo, also licensing prevents us from having an actual venmo implementation in our app.
+* Credits
 
 __TODO - Possible Design Structures:__
 
