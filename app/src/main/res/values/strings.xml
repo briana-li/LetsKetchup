@@ -4,8 +4,10 @@
     <string name="sign_out">Sign Out</string>
     <string name="friends_list">Friends</string>
     <string name="find_friends">Find Friends</string>
-    <string name="time_title">Please select the time for your meal</string>
-    <string name="date_title">Please select the date for your meal</string>
+    <string name="time_title">Select the time of meal</string>
+    <string name="date_title">Select the date of meal</string>
+    <string name="initMes">If you would like to leave this chat, please select "leave"</string>
+
 
     <string name="settings_text_select_theme">Select Theme:</string>
     <string name="settings_text_credentials">Credentials</string>
