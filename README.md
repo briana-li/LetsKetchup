@@ -1,7 +1,7 @@
 # FoodGroup App: LetsKetchup
 Final Project for Brandeis University's Mobile App Development Class:
 
-**App Name:** LetsKetchup
+**App Name:** LetsKetchup  
 **Team Members:** Jordan Prudhomme, Steven Chen, Ritika Saxena, Briana Li, Jonas Tjahjadi 
 
 *App designed on Android Studio*
