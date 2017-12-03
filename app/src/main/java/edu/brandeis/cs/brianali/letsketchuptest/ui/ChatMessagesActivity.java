@@ -212,7 +212,6 @@ public class ChatMessagesActivity extends AppCompatActivity {
                 LinearLayout messageLine = (LinearLayout) view.findViewById(R.id.messageLine);
                 TextView messgaeText = (TextView) view.findViewById(R.id.messageTextView);
                 TextView senderText = (TextView) view.findViewById(R.id.senderTextView);
-                //TextView timeTextView = (TextView) view.findViewById(R.id.timeTextView);
                 final ImageView leftImage = (ImageView) view.findViewById(R.id.leftMessagePic);
                 final ImageView rightImage = (ImageView) view.findViewById(R.id.rightMessagePic);
                 LinearLayout individMessageLayout = (LinearLayout)view.findViewById(R.id.individMessageLayout);
@@ -303,32 +302,6 @@ public class ChatMessagesActivity extends AppCompatActivity {
         mMessageList.setAdapter(mMessageListAdapter);
     }
 
-    private void playSound(Uri uri){
-        MediaPlayer mediaPlayer = new MediaPlayer();
-        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-        try {
-            mediaPlayer.setDataSource(uri.toString());
-        }catch(Exception e){
-
-        }
-        mediaPlayer.prepareAsync();
-        //You can show progress dialog here untill it prepared to play
-        mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mp) {
-                //Now dismis progress dialog, Media palyer will start playing
-                mp.start();
-            }
-        });
-        mediaPlayer.setOnErrorListener(new MediaPlayer.OnErrorListener() {
-            @Override
-            public boolean onError(MediaPlayer mp, int what, int extra) {
-                // dissmiss progress bar here. It will come here when MediaPlayer
-                //  is not able to play file. You can show error message to user
-                return false;
-            }
-        });
-    }
 
     private void initializeScreen() {
         mMessageList = (ListView) findViewById(R.id.messageListView);
