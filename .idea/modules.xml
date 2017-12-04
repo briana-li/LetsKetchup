@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/LetsKetchup.iml" filepath="$PROJECT_DIR$/LetsKetchup.iml" />
-      <module fileurl="file://$PROJECT_DIR$/LetsKetchup.iml" filepath="$PROJECT_DIR$/LetsKetchup.iml" />
+      <module fileurl="file://C:\Users\jonas\AndroidStudioProjects\LetsKetchupFinalProject\LetsKetchup.iml" filepath="C:\Users\jonas\AndroidStudioProjects\LetsKetchupFinalProject\LetsKetchup.iml" />
       <module fileurl="file://$PROJECT_DIR$/LetsKetchupFinalProject.iml" filepath="$PROJECT_DIR$/LetsKetchupFinalProject.iml" />
-      <module fileurl="file://$PROJECT_DIR$/LetsKetchupTest.iml" filepath="$PROJECT_DIR$/LetsKetchupTest.iml" />
+      <module fileurl="file://C:\Users\jonas\AndroidStudioProjects\LetsKetchupFinalProject\LetsKetchupTest.iml" filepath="C:\Users\jonas\AndroidStudioProjects\LetsKetchupFinalProject\LetsKetchupTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
