@@ -88,9 +88,9 @@ public class CreateChat extends AppCompatActivity {
     }
 
     public void timeLayout(){
-       // title.setText(R.string.time_title);
-        buttonDate.setVisibility(View.GONE);
-        date.setVisibility(View.GONE);
+        title.setText(R.string.time_title);
+        buttonDate.setVisibility(View.INVISIBLE);
+        date.setVisibility(View.INVISIBLE);
         buttonTime.setVisibility(View.VISIBLE);
         time.setVisibility(View.VISIBLE);
 
@@ -98,9 +98,9 @@ public class CreateChat extends AppCompatActivity {
     }
 
     public void dateLayout(){
-      //  title.setText(R.string.date_title);
-        buttonTime.setVisibility(View.GONE);
-        time.setVisibility(View.GONE);
+        title.setText(R.string.date_title);
+        buttonTime.setVisibility(View.INVISIBLE);
+        time.setVisibility(View.INVISIBLE);
         buttonDate.setVisibility(View.VISIBLE);
         date.setVisibility(View.VISIBLE);
     }

@@ -233,9 +233,8 @@ public class ChatActivity extends AppCompatActivity {
         chatRef.updateChildren(chatItemMap);
 
         //Create corresponding message location for this chat
-        String initialMessage = mFriendsInChat.getText().toString();
         Message initialMessages =
-                new Message("System", initialMessage, "");
+                new Message("System");
         final DatabaseReference initMsgRef =
                 mFirebaseDatabase.getReference(Constants.MESSAGE_LOCATION + "/" + pushKey);
         final DatabaseReference msgPush = initMsgRef.push();
@@ -244,8 +243,7 @@ public class ChatActivity extends AppCompatActivity {
 
         //Must add chat reference under every user object. Chat/User/Chats[chat1, chat2 ..]
         //Add to current users chat object
-        //TODO: OPTIMIZATION!! decide how we will solve data replication issue, we could just send chat id
-        // but this would require more complex queries on other pages
+
         chatItemMap = new HashMap<String, Object>();
         chatItemMap.put("/chats/" + pushKey, chatObj); //repushes chat obj -- Not space efficient
         mCurrentUserDatabaseReference.updateChildren(chatItemMap); //Adds Chatkey to users chats

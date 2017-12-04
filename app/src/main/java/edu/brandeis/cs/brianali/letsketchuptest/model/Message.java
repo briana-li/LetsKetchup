@@ -1,13 +1,14 @@
 package edu.brandeis.cs.brianali.letsketchuptest.model;
 
+import edu.brandeis.cs.brianali.letsketchuptest.R;
+
 public class Message {
 
     private String sender;
     private String message;
-    //private Boolean multimedia = false;
     private String contentType = "";
     private String contentLocation = "";
-    //private String timestamp = "";
+
 
     public Message(){
 
@@ -17,24 +18,20 @@ public class Message {
     public Message(String sender, String message, String time){
         this.sender = sender;
         this.message = message;
-        //this.timestamp = time;
-        //this.multimedia = false;
     }
 
-//    //Constructor for Multimedia message
-//    public Message(String sender, String message, String contentType, String contentLocation, String time){
-//        this.sender = sender;
-//        this.message = message;
-//        this.multimedia = true;
-//        this.contentType = contentType;
-//        this.timestamp = time;
-//        this.contentLocation = contentLocation;
-//    }
+    //Constructor for initial message
+    public Message(String sender){
+        this.sender = "system";
+        this.message = "If you would like to leave this chat, please select the \"leave\" option";
+    }
+
+
 
     public String getSender() {
         return sender;
     }
-//    public String getTimestamp(){return timestamp;}
+
     public String getMessage() {
         return message;
     }
@@ -43,9 +40,7 @@ public class Message {
         return contentLocation;
     }
 
-//    public Boolean getMultimedia() {
-//        return multimedia;
-//    }
+
 
     public String getContentType() {
         return contentType;
