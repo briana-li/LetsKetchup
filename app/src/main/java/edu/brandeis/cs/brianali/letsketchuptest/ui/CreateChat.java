@@ -3,6 +3,7 @@ package edu.brandeis.cs.brianali.letsketchuptest.ui;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -10,8 +11,10 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import java.util.Calendar;
 import java.util.Date;
-import com.google.api.services.calendar.CalendarScopes;
-import com.google.api.services.calendar.model.*;
+
+//import com.google.api.client.util.DateTime;
+//import com.google.api.services.calendar.CalendarScopes;
+//import com.google.api.services.calendar.model.*;
 
 import edu.brandeis.cs.brianali.letsketchuptest.R;
 
@@ -107,9 +110,14 @@ public class CreateChat extends AppCompatActivity {
         date.setVisibility(View.VISIBLE);
     }
 
-    public void makeEvent(String date, String time, String summary){
-        
-        Event event = new Event();
-    }
+//    public void makeEvent( String summary){
+//        //time.getHour(s);
+//        //time.getMinute();
+//        Event event = new Event();
+//        event.setSummary(summary);
+//        String dateTimeString = "";
+//        Log.v("DATETIMESTRING", dateTimeString);
+//        DateTime dateTime = new DateTime("");
+//    }
 
 }

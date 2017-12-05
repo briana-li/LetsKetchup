@@ -326,7 +326,7 @@ public class ChatMessagesActivity extends AppCompatActivity {
         mToolBar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                startActivity(new Intent(ChatMessagesActivity.this,ChatListActivity.class));
             }
         });
     }
