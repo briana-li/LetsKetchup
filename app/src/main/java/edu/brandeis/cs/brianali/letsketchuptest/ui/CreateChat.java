@@ -9,12 +9,15 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
+
+import com.google.api.client.util.DateTime;
+
 import java.util.Calendar;
 import java.util.Date;
 
-//import com.google.api.client.util.DateTime;
-//import com.google.api.services.calendar.CalendarScopes;
-//import com.google.api.services.calendar.model.*;
+import com.google.api.client.util.DateTime;
+import com.google.api.services.calendar.CalendarScopes;
+import com.google.api.services.calendar.model.*;
 
 import edu.brandeis.cs.brianali.letsketchuptest.R;
 
@@ -110,14 +113,14 @@ public class CreateChat extends AppCompatActivity {
         date.setVisibility(View.VISIBLE);
     }
 
-//    public void makeEvent( String summary){
-//        //time.getHour(s);
-//        //time.getMinute();
-//        Event event = new Event();
-//        event.setSummary(summary);
-//        String dateTimeString = "";
-//        Log.v("DATETIMESTRING", dateTimeString);
-//        DateTime dateTime = new DateTime("");
-//    }
+    public void makeEvent( String summary){
+        //time.getHour(s);
+        //time.getMinute();
+        Event event = new Event();
+        event.setSummary(summary);
+        String dateTimeString = date.toString() + "T" + time.getMinute() + time.getHour();
+        Log.v("DATETIMESTRING", dateTimeString);
+        DateTime dateTime = new DateTime("");
+    }
 
 }
