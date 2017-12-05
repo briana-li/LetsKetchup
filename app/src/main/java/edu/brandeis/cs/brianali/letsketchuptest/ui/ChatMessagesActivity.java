@@ -23,6 +23,8 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -36,6 +38,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import com.bumptech.glide.Glide;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -326,6 +329,42 @@ public class ChatMessagesActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_chat, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.sign_out) {
+            AuthUI.getInstance()
+                    .signOut(this);
+        }
+        if (id == R.id.listFriends) {
+            //Open up activity where a user can add and view friends
+            Intent intent = new Intent(this, FriendsListActivity.class);
+            startActivity(intent);
+        }
+
+        if (id == R.id.profilePage) {
+            //Open up activity where a user can add and view friends
+            Intent intent = new Intent(this, ProfileActivity.class);
+            startActivity(intent);
+        }
+
+        if (id == R.id.venmo) {
+            //open venmo
+            Uri uri = Uri.parse("https://venmo.com/");
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            startActivity(intent);
+        }
+
+        return true;
     }
 
 }

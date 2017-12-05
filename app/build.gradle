@@ -7,6 +7,7 @@ android {
     }
     compileSdkVersion 24
     buildToolsVersion '26.0.2'
+
     defaultConfig {
         applicationId "edu.brandeis.cs.brianali.letsketchuptest"
         minSdkVersion 21

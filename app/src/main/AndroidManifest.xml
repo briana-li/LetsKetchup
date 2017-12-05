@@ -28,8 +28,14 @@
                     <category android:name="android.intent.category.LAUNCHER" />
                 </intent-filter>
             </activity>
-            <activity android:name=".ui.AboutActivity" />
-            <activity android:name=".ui.SettingsActivity" />
+            <activity
+                android:name=".ui.AboutActivity"
+                android:label="About Us"
+                android:theme="@style/AppTheme.NoActionBar"/>
+            <activity
+                android:name=".ui.SettingsActivity"
+                android:label="Settings"
+                android:theme="@style/AppTheme.NoActionBar"/>
             <activity
                 android:name=".ui.FriendsListActivity"
                 android:label="Find Friends"
