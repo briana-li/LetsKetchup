@@ -10,6 +10,8 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import java.util.Calendar;
 import java.util.Date;
+import com.google.api.services.calendar.CalendarScopes;
+import com.google.api.services.calendar.model.*;
 
 import edu.brandeis.cs.brianali.letsketchuptest.R;
 
@@ -103,6 +105,11 @@ public class CreateChat extends AppCompatActivity {
         time.setVisibility(View.INVISIBLE);
         buttonDate.setVisibility(View.VISIBLE);
         date.setVisibility(View.VISIBLE);
+    }
+
+    public void makeEvent(String date, String time, String summary){
+        
+        Event event = new Event();
     }
 
 }
