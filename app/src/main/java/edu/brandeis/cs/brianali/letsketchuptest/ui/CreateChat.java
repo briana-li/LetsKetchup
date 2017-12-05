@@ -74,6 +74,7 @@ public class CreateChat extends AppCompatActivity {
 
             public void onClick(View v) {
                 finalTime = (getTimeFromTimePicker(time));
+                //makeEvent("");
                 Intent naming = new Intent(CreateChat.this,ChatActivity.class);
                 naming.putExtra("time",finalTime);
                 naming.putExtra("date",finalDate);

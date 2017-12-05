@@ -216,8 +216,10 @@ public class ChatActivity extends AppCompatActivity {
         final String pushKey = pushRef.getKey();
         mChat.setUid(pushKey);
 
-        //Here is the chat naming code using intent
         Intent naming = getIntent();
+        //Google Calendar event creation using intent
+
+        //Here is the chat naming code using intent
         String date = naming.getStringExtra("date");
         String time = naming.getStringExtra("time");
         mChat.setChatName(mChatName.getText().toString());
