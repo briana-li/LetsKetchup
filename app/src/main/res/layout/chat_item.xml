@@ -48,15 +48,15 @@
             tools:text="3:52 P.M." />
 
 
-        <Button
-            android:id="@+id/removeChat"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_alignBottom="@+id/nameTextView"
-            android:layout_alignParentEnd="true"
-            android:layout_gravity="center"
-            android:layout_marginEnd="14dp"
-            android:background="@mipmap/ic_minus_red" />
+        <!--<Button-->
+            <!--android:id="@+id/removeChat"-->
+            <!--android:layout_width="50dp"-->
+            <!--android:layout_height="50dp"-->
+            <!--android:layout_alignBottom="@+id/nameTextView"-->
+            <!--android:layout_alignParentEnd="true"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:layout_marginEnd="14dp"-->
+            <!--android:background="@mipmap/ic_minus_red" />-->
 
 
     </RelativeLayout>

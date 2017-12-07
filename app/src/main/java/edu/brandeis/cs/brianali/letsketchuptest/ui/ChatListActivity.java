@@ -213,15 +213,15 @@ public class ChatListActivity extends AppCompatActivity{
                     public void onCancelled(DatabaseError databaseError) {}
                 });
 
-                (view.findViewById(R.id.removeChat)).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Log.w(TAG, "Clicking row: " + position);
-                        Log.w(TAG, "Clicking user: " + chatName);
-                        //Removes user from chat
-                        removeChat(chatName);
-                    }
-                });
+//                (view.findViewById(R.id.removeChat)).setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        Log.w(TAG, "Clicking row: " + position);
+//                        Log.w(TAG, "Clicking user: " + chatName);
+//                        //Removes user from chat
+//                        removeChat(chatName);
+//                    }
+//                });
 
                 //Replace this with the most recent message from the chat
 
