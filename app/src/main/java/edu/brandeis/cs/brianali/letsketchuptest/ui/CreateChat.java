@@ -121,10 +121,10 @@ public class CreateChat extends AppCompatActivity {
         }
         String min = String.valueOf(minute);
         if(minute<10){
-            min = "0"  +minute;
+            min = "0"  + minute;
         }
 
-        return hour + ":" + minute + ampm;
+        return hour + ":" + min + ampm;
     }
 
     public void timeLayout(){
@@ -144,38 +144,4 @@ public class CreateChat extends AppCompatActivity {
         buttonDate.setVisibility(View.VISIBLE);
         date.setVisibility(View.VISIBLE);
     }
-
-
-
-//    public static void addEvent(int hour, int minute, int year, int month, int day,  String summary) throws IOException {
-//        FirebaseUser mUser = FirebaseAuth.getInstance().getCurrentUser();
-//        mUser.
-//        HttpTransport transport = AndroidHttp.newCompatibleTransport();
-//        JsonFactory jsonFactory = JacksonFactory.getDefaultInstance();
-//
-//        GoogleAccountCredential mCredential = GoogleAccountCredential.usingOAuth2(
-//                getApplicationContext(), Arrays.asList(SCOPES))
-//                .setBackOff(new ExponentialBackOff());
-//
-//        Event event = new Event();
-//        Calendar calendar = Calendar.getInstance();
-//        calendar.set(year, month, day);
-//
-//        calendar.set(Calendar.HOUR,hour);
-//        calendar.set(Calendar.MINUTE,minute);
-//        Log.v("DATETIMESTRING", calendar.getTime().toString());
-//        DateTime dateTime = new DateTime(calendar.getTime());
-//        EventDateTime start = new EventDateTime()
-//                .setDateTime(dateTime);
-//        event.setStart(start);
-//
-//        event.setSummary(summary);
-//        com.google.api.services.calendar.Calendar mService = new com.google.api.services.calendar.Calendar.Builder(
-//                transport, jsonFactory, credential)
-//                .setApplicationName("LetsKetchup")
-//                .build();
-//        event = service.events().insert("primary", event).execute();
-//        System.out.printf("Event created: %s\n", event.getHtmlLink());
-//    }
-
 }

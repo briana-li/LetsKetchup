@@ -10,20 +10,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -33,16 +28,13 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.UUID;
 
 import edu.brandeis.cs.brianali.letsketchuptest.R;
-import edu.brandeis.cs.brianali.letsketchuptest.model.Message;
 import edu.brandeis.cs.brianali.letsketchuptest.model.User;
 import edu.brandeis.cs.brianali.letsketchuptest.utils.Constants;
 import edu.brandeis.cs.brianali.letsketchuptest.utils.EmailEncoding;
-import jp.wasabeef.glide.transformations.BlurTransformation;
+
 import jp.wasabeef.glide.transformations.CropCircleTransformation;
 
 public class ProfileActivity extends AppCompatActivity {
@@ -54,7 +46,6 @@ public class ProfileActivity extends AppCompatActivity {
     private StorageReference mStorage;
     private FirebaseAuth mFirebaseAuth;
     private String currentUserEmail;
-    private ImageView profileImage;
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference mCurrentUserDatabaseReference;
     private Context mView;
@@ -83,7 +74,6 @@ public class ProfileActivity extends AppCompatActivity {
             Uri uri = data.getData();
             //Keep all images for a specific chat grouped together
             final String imageLocation = "Photos/profile_picture/" + currentUserEmail;
-            final String imageLocationId = imageLocation + "/" + uri.getLastPathSegment();
             final String uniqueId = UUID.randomUUID().toString();
             final StorageReference filepath = mStorage.child(imageLocation).child(uniqueId + "/profile_pic");
             final String downloadURl = filepath.getPath();

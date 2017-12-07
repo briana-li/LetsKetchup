@@ -86,13 +86,10 @@ public class ChatMessagesActivity extends AppCompatActivity {
     private FirebaseListAdapter<Message> mMessageListAdapter;
     private FirebaseAuth mFirebaseAuth;
 
-    private ImageButton mphotoPickerButton;
     private static final int GALLERY_INTENT=2;
     private StorageReference mStorage;
     private ProgressDialog mProgress;
 
-    private ImageButton mrecordVoiceButton;
-    private TextView mRecordLable;
 
     private MediaRecorder mRecorder;
     private String mFileName = null;
@@ -115,11 +112,7 @@ public class ChatMessagesActivity extends AppCompatActivity {
         if(messageId == null){
             finish(); // replace this.. nav user back to home
             return;
-        }else if(messageId.equals("\"If you would like to leave this chat, please select the \\\"leave\\\" option\"")){
-
         }
-
-
         initializeScreen();
         mToolBar.setTitle(chatName);
         showMessages();
@@ -260,8 +253,6 @@ public class ChatMessagesActivity extends AppCompatActivity {
                     });
 
                     individMessageLayout.setBackgroundResource(R.drawable.roundedmessagescolored);
-                    //messgaeText.setBackgroundColor(ResourcesCompat.getColor(getResources(),
-                    //       R.color.colorAccent, null));
                 }else if(mSender.equals("System")){
                     messageLine.setGravity(Gravity.CENTER_HORIZONTAL);
                     leftImage.setVisibility(View.GONE);

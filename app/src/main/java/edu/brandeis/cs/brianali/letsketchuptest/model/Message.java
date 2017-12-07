@@ -9,6 +9,8 @@ public class Message {
     private String contentType = "";
     private String contentLocation = "";
 
+    private String INIT_MESSAGE = "Welcome to the chat! Use this space to coordinate your meals with your friends :)";
+
 
     public Message(){
 
@@ -23,7 +25,7 @@ public class Message {
     //Constructor for initial message
     public Message(String sender){
         this.sender = "system";
-        this.message = "If you would like to leave this chat, please select the \"leave\" option";
+        this.message = INIT_MESSAGE;
     }
 
 
