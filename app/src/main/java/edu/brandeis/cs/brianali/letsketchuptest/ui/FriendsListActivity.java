@@ -129,7 +129,7 @@ public class FriendsListActivity extends AppCompatActivity {
                         removeFriend(email);
                     }
                 });
-              }
+            }
         };
 
         mListView.setAdapter(mFriendListAdapter);
