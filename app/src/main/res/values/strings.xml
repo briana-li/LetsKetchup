@@ -6,7 +6,7 @@
     <string name="find_friends">Find Friends</string>
     <string name="time_title">Select the time of meal</string>
     <string name="date_title">Select the date of meal</string>
-    <string name="initMes">If you would like to leave this chat, please select "leave"</string>
+    <string name="initMes">Welocome to the chat! Use this space to coordinate your meals with your friends :)</string>
 
 
     <string name="settings_text_select_theme">Select Theme:</string>

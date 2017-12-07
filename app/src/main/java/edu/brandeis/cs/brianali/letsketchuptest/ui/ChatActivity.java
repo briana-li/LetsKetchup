@@ -23,6 +23,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import java.util.Calendar;
 
 
 
@@ -56,6 +57,7 @@ import java.util.List;
 import java.util.Map;
 
 
+import edu.brandeis.cs.brianali.letsketchuptest.MainActivity;
 import edu.brandeis.cs.brianali.letsketchuptest.R;
 import edu.brandeis.cs.brianali.letsketchuptest.model.Chat;
 import edu.brandeis.cs.brianali.letsketchuptest.model.Friend;
@@ -141,7 +143,7 @@ public class ChatActivity extends AppCompatActivity implements EasyPermissions.P
 
 
     GoogleAccountCredential mCredential;
-    ProgressDialog mProgress;
+    Event event;
 
     static final int REQUEST_ACCOUNT_PICKER = 1000;
     static final int REQUEST_AUTHORIZATION = 1001;
@@ -314,8 +316,25 @@ public class ChatActivity extends AppCompatActivity implements EasyPermissions.P
         int cMinute = naming.getIntExtra("minute", 0);
         String cSummary = mChatName.getText().toString();
 
-        //getResultsFromApi();
-        //CreateChat.addEvent(cHour, cMinute, cYear, cMonth, cMinute, cSummary);
+        mCredential = GoogleAccountCredential.usingOAuth2(
+                getApplicationContext(), Arrays.asList(SCOPES))
+                .setBackOff(new ExponentialBackOff());
+
+        getResultsFromApi();
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(cYear, cMonth, cDay);
+
+        calendar.set(Calendar.HOUR, cHour);
+        calendar.set(Calendar.MINUTE, cMinute);
+        Log.v("DATETIMESTRING", calendar.getTime().toString());
+        DateTime dateTime = new DateTime(calendar.getTime());
+        EventDateTime start = new EventDateTime()
+                .setDateTime(dateTime);
+        event = new Event();
+        event.setStart(start);
+        event.setSummary(cSummary);
+
 
         //Here is the chat naming code using intent
         String date = naming.getStringExtra("date");
@@ -365,6 +384,22 @@ public class ChatActivity extends AppCompatActivity implements EasyPermissions.P
         startActivity(intent);
     }
 
+    private List<String> makeEvent() throws IOException {
+        HttpTransport transport = AndroidHttp.newCompatibleTransport();
+        JsonFactory jsonFactory = JacksonFactory.getDefaultInstance();
+        com.google.api.services.calendar.Calendar mService = new com.google.api.services.calendar.Calendar.Builder(
+                transport, jsonFactory, mCredential)
+                .setApplicationName("LetsKetchup")
+                .build();
+        event = mService.events().insert("primary", event).execute();
+        System.out.printf("Event created: %s\n", event.getHtmlLink());
+        List<String> list = new ArrayList<String>();
+        list .add("done");
+        return list;
+
+
+    }
+
     private void initializeScreen() {
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mFirebaseAuth = FirebaseAuth.getInstance();
@@ -398,59 +433,6 @@ public class ChatActivity extends AppCompatActivity implements EasyPermissions.P
         mChatName = (EditText) findViewById(R.id.chat_name);
         mChat = new Chat("", "");
     }
-
-
-    //    /**
-//     * Create the main activity.
-//     * @param savedInstanceState previously saved instance data.
-//     */
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        LinearLayout activityLayout = new LinearLayout(this);
-//        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-//                LinearLayout.LayoutParams.MATCH_PARENT,
-//                LinearLayout.LayoutParams.MATCH_PARENT);
-//        activityLayout.setLayoutParams(lp);
-//        activityLayout.setOrientation(LinearLayout.VERTICAL);
-//        activityLayout.setPadding(16, 16, 16, 16);
-//
-//        ViewGroup.LayoutParams tlp = new ViewGroup.LayoutParams(
-//                ViewGroup.LayoutParams.WRAP_CONTENT,
-//                ViewGroup.LayoutParams.WRAP_CONTENT);
-//
-//        mCallApiButton = new Button(this);
-//        mCallApiButton.setText(BUTTON_TEXT);
-//        mCallApiButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                mCallApiButton.setEnabled(false);
-//                mOutputText.setText("");
-//                getResultsFromApi();
-//                mCallApiButton.setEnabled(true);
-//            }
-//        });
-//        activityLayout.addView(mCallApiButton);
-//
-//        mOutputText = new TextView(this);
-//        mOutputText.setLayoutParams(tlp);
-//        mOutputText.setPadding(16, 16, 16, 16);
-//        mOutputText.setVerticalScrollBarEnabled(true);
-//        mOutputText.setMovementMethod(new ScrollingMovementMethod());
-//        mOutputText.setText(
-//                "Click the \'" + BUTTON_TEXT +"\' button to test the API.");
-//        activityLayout.addView(mOutputText);
-//
-//        mProgress = new ProgressDialog(this);
-//        mProgress.setMessage("Calling Google Calendar API ...");
-//
-//        setContentView(activityLayout);
-//
-//        // Initialize credentials and service object.
-//        mCredential = GoogleAccountCredential.usingOAuth2(
-//                getApplicationContext(), Arrays.asList(SCOPES))
-//                .setBackOff(new ExponentialBackOff());
-//    }
 
 
     /**
@@ -676,7 +658,7 @@ public class ChatActivity extends AppCompatActivity implements EasyPermissions.P
         @Override
         protected List<String> doInBackground(Void... params) {
             try {
-                return getDataFromApi();
+                return makeEvent();
             } catch (Exception e) {
                 mLastError = e;
                 cancel(true);
@@ -718,17 +700,17 @@ public class ChatActivity extends AppCompatActivity implements EasyPermissions.P
 
         @Override
         protected void onPreExecute() {
-            mProgress.show();
+
         }
 
         @Override
         protected void onPostExecute(List<String> output) {
-            mProgress.hide();
+
         }
 
         @Override
         protected void onCancelled() {
-            mProgress.hide();
+
             if (mLastError != null) {
                 if (mLastError instanceof GooglePlayServicesAvailabilityIOException) {
                     showGooglePlayServicesAvailabilityErrorDialog(
@@ -738,10 +720,9 @@ public class ChatActivity extends AppCompatActivity implements EasyPermissions.P
                     startActivityForResult(
                             ((UserRecoverableAuthIOException) mLastError).getIntent(),
                             ChatActivity.REQUEST_AUTHORIZATION);
-                }
 
+                }
             }
         }
-
     }
 }
