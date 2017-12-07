@@ -9,6 +9,7 @@ android {
     buildToolsVersion '26.0.2'
 
     defaultConfig {
+        multiDexEnabled true
         applicationId "edu.brandeis.cs.brianali.letsketchuptest"
         minSdkVersion 23
         targetSdkVersion 24
@@ -34,7 +35,7 @@ targetCompatibility = 1.7
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    androidTestCompile('com.android.support.test.espresso:espresso-core:3.0.1', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'com.android.support:appcompat-v7:24.2.1'

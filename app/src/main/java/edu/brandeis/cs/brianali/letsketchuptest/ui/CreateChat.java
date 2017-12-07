@@ -78,6 +78,12 @@ public class CreateChat extends AppCompatActivity {
                 Intent naming = new Intent(CreateChat.this,ChatActivity.class);
                 naming.putExtra("time",finalTime);
                 naming.putExtra("date",finalDate);
+
+                naming.putExtra("year",date.getYear());
+                naming.putExtra("month",date.getMonth());
+                naming.putExtra("day",date.getDayOfMonth());
+                naming.putExtra("hour",time.getHour());
+                naming.putExtra("minute",time.getMinute());
                 startActivity(naming);
             }
         });
@@ -173,7 +179,8 @@ public class CreateChat extends AppCompatActivity {
     public static Credential authorize() throws IOException {
         // Load client secrets.
         InputStream in =
-                CreateChat.class.getResourceAsStream("/client_secret.json");
+                CreateChat.class.getResourceAsStream("../../client_calendar.json");
+        System.out.println(in == null);
         GoogleClientSecrets clientSecrets =
                 GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in));
 
@@ -198,17 +205,22 @@ public class CreateChat extends AppCompatActivity {
                 .build();
     }
 
-    public void makeEvent( String summary) throws IOException{
+
+
+    public static void addEvent(int hour, int minute, int year, int month, int day,  String summary) throws IOException{
         Event event = new Event();
-        event.setSummary(summary);
-        calendar.set(Calendar.HOUR,time.getHour());
-        calendar.set(Calendar.MINUTE,time.getMinute());
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(year, month, day);
+
+        calendar.set(Calendar.HOUR,hour);
+        calendar.set(Calendar.MINUTE,minute);
         Log.v("DATETIMESTRING", calendar.getTime().toString());
         DateTime dateTime = new DateTime(calendar.getTime());
         EventDateTime start = new EventDateTime()
                 .setDateTime(dateTime);
         event.setStart(start);
 
+        event.setSummary(summary);
         com.google.api.services.calendar.Calendar service =
                 getCalendarService();
         event = service.events().insert("primary", event).execute();
