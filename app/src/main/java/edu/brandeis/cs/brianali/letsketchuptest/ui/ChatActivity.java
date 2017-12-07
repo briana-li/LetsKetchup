@@ -24,6 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -206,7 +207,7 @@ public class ChatActivity extends AppCompatActivity {
     }
 
     //TODO: Add create new Chat function
-    public void createChat(View view){
+    public void createChat(View view) throws IOException{
         //final String userLoggedIn = mFirebaseAuth.getCurrentUser().getEmail();
         //Log.e(TAG, "User logged in is: " + userLoggedIn);
         // final String newFriendEncodedEmail = EmailEncoding.commaEncodePeriod(newFriendEmail);
@@ -216,11 +217,21 @@ public class ChatActivity extends AppCompatActivity {
         final String pushKey = pushRef.getKey();
         mChat.setUid(pushKey);
 
-        //Here is the chat naming code using intent
         Intent naming = getIntent();
+        //Google Calendar event creation using intent
+        int cYear = naming.getIntExtra("year",0);
+        int cMonth = naming.getIntExtra("month",0);
+        int cDay = naming.getIntExtra("day",0);
+        int cHour = naming.getIntExtra("hour",0);
+        int cMinute = naming.getIntExtra("minute",0);
+        String cSummary = mChatName.getText().toString();
+
+        //CreateChat.addEvent(cHour, cMinute, cYear, cMonth, cMinute, cSummary);
+
+        //Here is the chat naming code using intent
         String date = naming.getStringExtra("date");
         String time = naming.getStringExtra("time");
-        mChat.setChatName(mChatName.getText().toString());
+        mChat.setChatName(cSummary);
         mChat.setChatDate("Event on " + date + " at " + time);
 
         Log.e(TAG, "Push key is: " + pushKey);

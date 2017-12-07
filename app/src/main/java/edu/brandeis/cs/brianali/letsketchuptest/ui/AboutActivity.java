@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import edu.brandeis.cs.brianali.letsketchuptest.MainActivity;
@@ -15,14 +16,28 @@ import edu.brandeis.cs.brianali.letsketchuptest.R;
 
 public class AboutActivity extends AppCompatActivity {
 
+    private Toolbar mToolBar;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.about);
+        setContentView(R.layout.about_activity);
+        initializeScreen();
     }
 
-    public void sendMessage(View view){
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+    private void initializeScreen(){
+        mToolBar = (Toolbar) findViewById(R.id.toolbar);
+        mToolBar.setTitle("About Us");
+        setSupportActionBar(mToolBar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        mToolBar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
+
+
 }
