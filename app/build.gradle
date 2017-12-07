@@ -30,8 +30,6 @@ android {
     }
 }
 
-sourceCompatibility = 1.7
-targetCompatibility = 1.7
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -39,8 +37,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'com.android.support:appcompat-v7:24.1.1'
-    compile 'com.android.support:support-v4:24.0.0'
-    //compile 'com.android.support:design:24.2.1'
+    compile 'com.android.support:support-v4:24.2.1'
     compile 'com.android.support:design:24.2.1'
     testCompile 'junit:junit:4.12'
 
@@ -64,9 +61,14 @@ dependencies {
     compile 'com.google.android.gms:play-services-appindexing:9.6.0'
 
     //Google Calendar API
-    compile 'com.google.api-client:google-api-client:1.23.0'
-    compile 'com.google.oauth-client:google-oauth-client-jetty:1.23.0'
-    compile 'com.google.apis:google-api-services-calendar:v3-rev271-1.23.0'
+    compile 'pub.devrel:easypermissions:0.3.0'
+    compile 'com.google.android.gms:play-services-auth:9.6.0'
+    compile('com.google.api-client:google-api-client-android:1.23.0') {
+        exclude group: 'org.apache.httpcomponents'
+    }
+    compile('com.google.apis:google-api-services-calendar:v3-rev272-1.23.0') {
+        exclude group: 'org.apache.httpcomponents'
+    }
 
 }
 

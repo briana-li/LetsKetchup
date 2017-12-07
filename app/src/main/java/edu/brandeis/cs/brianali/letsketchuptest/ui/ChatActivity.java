@@ -14,6 +14,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.firebase.auth.FirebaseAuth;
@@ -228,7 +229,7 @@ public class ChatActivity extends AppCompatActivity {
         int cMinute = naming.getIntExtra("minute",0);
         String cSummary = mChatName.getText().toString();
 
-        CreateChat.addEvent(cHour, cMinute, cYear, cMonth, cMinute, cSummary);
+        //CreateChat.addEvent(cHour, cMinute, cYear, cMonth, cMinute, cSummary);
 
         //Here is the chat naming code using intent
         String date = naming.getStringExtra("date");
