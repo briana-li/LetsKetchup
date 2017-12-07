@@ -13,6 +13,7 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,6 +28,7 @@ import com.google.firebase.storage.StorageReference;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+
 
 import edu.brandeis.cs.brianali.letsketchuptest.R;
 import edu.brandeis.cs.brianali.letsketchuptest.model.Chat;
@@ -226,7 +228,7 @@ public class ChatActivity extends AppCompatActivity {
         int cMinute = naming.getIntExtra("minute",0);
         String cSummary = mChatName.getText().toString();
 
-        //CreateChat.addEvent(cHour, cMinute, cYear, cMonth, cMinute, cSummary);
+        CreateChat.addEvent(cHour, cMinute, cYear, cMonth, cMinute, cSummary);
 
         //Here is the chat naming code using intent
         String date = naming.getStringExtra("date");

@@ -18,25 +18,19 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
-import com.google.api.client.util.DateTime;
 import com.google.api.services.calendar.CalendarScopes;
 import com.google.api.services.calendar.model.*;
 import com.google.api.client.extensions.java6.auth.oauth2.AuthorizationCodeInstalledApp;
 import com.google.api.client.extensions.jetty.auth.oauth2.LocalServerReceiver;
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
 import com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets;
-import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.calendar.model.EventDateTime;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 
 import edu.brandeis.cs.brianali.letsketchuptest.R;
 
@@ -146,7 +140,7 @@ public class CreateChat extends AppCompatActivity {
 
     /** Directory to store user credentials for this application. */
     private static final java.io.File DATA_STORE_DIR = new java.io.File(
-            System.getProperty("user.home"), ".credentials/calendar-java-quickstart");
+            System.getProperty("user.home"), ".credentials/calendar-java-letsketchup");
 
     /** Global instance of the {@link FileDataStoreFactory}. */
     private static FileDataStoreFactory DATA_STORE_FACTORY;
@@ -179,7 +173,7 @@ public class CreateChat extends AppCompatActivity {
     public static Credential authorize() throws IOException {
         // Load client secrets.
         InputStream in =
-                CreateChat.class.getResourceAsStream("../../client_calendar.json");
+                CreateChat.class.getResourceAsStream("/src/main/client_calendar.json");
         System.out.println(in == null);
         GoogleClientSecrets clientSecrets =
                 GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in));
