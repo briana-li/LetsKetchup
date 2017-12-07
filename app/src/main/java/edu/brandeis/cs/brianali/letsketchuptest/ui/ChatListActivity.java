@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -181,6 +182,20 @@ public class ChatListActivity extends AppCompatActivity implements EasyPermissio
             }
         });
     }
+    //removes user from chat when - button is pressed
+    //if chat is 2 people, deletes chat for both users
+    //if chat is greater than 2 people, only deletes chat for the user that clicked on the - button
+    private void removeChat(String chatName){
+        //Get current user logged in by email
+        final String userLoggedIn = mFirebaseAuth.getCurrentUser().getEmail();
+        //Log.e(TAG, "User logged in is: " + userLoggedIn);
+        final DatabaseReference userRef = mFirebaseDatabase.getReference(Constants.USERS_LOCATION
+                + "/" + EmailEncoding.commaEncodePeriod(userLoggedIn));
+        userRef.child("chats").child(chatName).removeValue();
+
+    }
+
+
 
     //Make initial main screen
     private void onSignedInInitialize(FirebaseUser user) {
@@ -199,7 +214,7 @@ public class ChatListActivity extends AppCompatActivity implements EasyPermissio
 
         mChatAdapter = new FirebaseListAdapter<Chat>(this, Chat.class, R.layout.chat_item, mChatDatabaseReference) {
             @Override
-            protected void populateView(final View view, Chat chat, final int position) {
+            protected void populateView(final View view, final Chat chat, final int position) {
                 //Log.e("TAG", "");
                 //final Friend addFriend = new Friend(chat);
                 ((TextView) view.findViewById(R.id.messageTextView)).setText(chat.getChatName());
@@ -211,6 +226,7 @@ public class ChatListActivity extends AppCompatActivity implements EasyPermissio
 
                 final TextView dateInfo = (TextView)view.findViewById(R.id.nameTextView);
                 final String subTitle = chat.getChatDate();
+                final String chatName= chat.getUid();
 
                 messageRef.addChildEventListener(new ChildEventListener() {
                     @Override
@@ -254,6 +270,16 @@ public class ChatListActivity extends AppCompatActivity implements EasyPermissio
 
                     @Override
                     public void onCancelled(DatabaseError databaseError) {}
+                });
+
+                (view.findViewById(R.id.removeChat)).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Log.w(TAG, "Clicking row: " + position);
+                        Log.w(TAG, "Clicking user: " + chatName);
+                        //Removes user from chat
+                        removeChat(chatName);
+                    }
                 });
 
                 //Replace this with the most recent message from the chat
